@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Photos } from "./components/Photos";
+import './styles.css';
 
-function App() {
+const App = () => {
+
+  const [photos, setPhotos] = useState([]);
+  const apiUrl = "https://jsonplaceholder.typicode.com/photos/";
+
+
+  const fetchPhotos = (apiUrl) => {
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => setPhotos(data))
+      .catch(error => console.log(error))
+  };
+  useEffect(() => {
+    fetchPhotos(apiUrl);
+  }, [])
+  console.log(apiUrl)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="main">
+      <div class="card">
+        <Photos photos={photos} />
+      </div>
+      {/* <div  draggable="true" class="square1">hello</div>
+<div draggable="true" class="square2">Kosmos</div> */}
     </div>
   );
-}
+};
 
-export default App;
+
+export default App
+
