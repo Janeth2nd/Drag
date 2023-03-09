@@ -8,9 +8,9 @@ export const Photos = ({ photos = {} }) => {
                     <div key={index} class='card' draggable="true">
                         <div>
 
-                            <div class='card-title'>{item.url}</div>
+                            {/* <div class='card-title'>{item.url}</div> */}
 
-                            {/* <img src={item.image} alt="" /> */}
+                            <img src={item.thumbnailUrl} alt="" /> 
                         </div>
                     </div>
                 ))}
